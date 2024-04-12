@@ -1,0 +1,7 @@
+input[type="checkbox"]:checked {
+    accent-color: gold;
+}
+
+body {
+    background-color: lavender;
+}

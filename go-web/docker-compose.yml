@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  go-web:
+    image: go-web
+    container_name: go-web
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_URI=mongodb://gw-mongo/27017
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo
+    container_name: gw-mongo

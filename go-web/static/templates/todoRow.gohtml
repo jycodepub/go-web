@@ -1,0 +1,23 @@
+{{ block "todoRow" . }}
+    {{ range .Todos }}
+    <tr>
+        <td>{{ .Task }}</td>
+        <td>{{ .Description }}</td>
+        <td>
+            {{ if .Completed }}
+                <input type="checkbox" checked disabled>
+            {{ else }}
+                <input type="checkbox" disabled>
+            {{ end }}
+        </td>
+        <td>
+            <div class="is-flex-direction-row">
+                <button hx-put="/todo/{{.Id}}" hx-target="#todo-table"
+                        class="button is-primary is-small">C</button>
+                <button hx-delete="/todo/{{.Id}}" hx-target="#todo-table"
+                        class="button is-small is-danger">D</button>
+            </div>
+        </td>
+    </tr>
+    {{ end }}
+{{ end }}

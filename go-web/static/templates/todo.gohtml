@@ -1,0 +1,51 @@
+{{ block "todo" . }}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+    <section class="section is-medium">
+    <h1 class="title">TODO List</h1>
+
+    <form hx-post="/todo" hx-target="#todo-table" class="box">
+        <div class="field">
+            <label class="label">Task</label>
+            <div class="control">
+                <input class="input" name="task" type="text">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+                <input class="input" name="description" type="text">
+            </div>
+        </div>
+        <div class="control">
+            <button type="submit" class="button is-success is-small is-rounded">Add Task</button>
+        </div>
+    </form>
+
+    <div class="table-container">
+        <table class="table is-striped is-fullwidth">
+            <thead>
+            <tr>
+                <th>Task</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="todo-table">
+                {{ template "todoRow" . }}
+            </tbody>
+        </table>
+    </div>
+    </section>
+</body>
+</html>
+{{ end }}
